@@ -1,0 +1,43 @@
+body {
+   font-family: sans-serif;
+   background-color: /*black*/#black;
+   color: white;
+   font-size: 100%;
+   font-weight:bold;
+	
+}
+   
+
+
+.largerCheckbox {
+            width: 22px;
+            height: 22px;
+			background:black;
+        }
+
+.main:hover input ~ .geekmark {
+            background-color: yellow;
+}
+.content { margin-right: 240px; }
+
+
+#redz {border-style: dotted;
+		 font-size: 150%;
+		 font-family: timesnewroman;
+		 color: #CC0011;
+		 background-color: #green;}
+
+#box {  position: relative; 
+		left: 0px; }
+		
+		
+#red {color: red;}
+
+#gray {color: #F9;}
+
+
+.inlineTable {
+              float:center;
+			  
+        }
+        
