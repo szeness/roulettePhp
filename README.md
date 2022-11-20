@@ -16,9 +16,11 @@ so this is a website where u can set bets as in rl roulette and then can let it 
 
 as u will see there is one bet for all picked numbers.  it would need at every number the textfields, its really oldschool kinda just having a gui and did it. 
 
-Sure would be beautiful to do it nicely with javascript. why not. 
+(Sure would be beautiful to do it nicely with javascript. why not. )
 
 then u see how ur credit is rising or decreasing. its interesting how the random times, when all chosen numbers gets rolled a lot in short time periods, happening right.
+every roll is documentated aswell as the history of the credit. its on the second page if u stop the autorefresh. 
+Tho the auto refresh not working right now idk what changed in the browsers, anyways still can roll one by one
 its kind of true if you have unlimited funds you can Most of the time win the money back. there is a point where it would be prolly imposible that the lucky numbers get
 rolled so many times, tho it would be possible if you let it run unlimited time..  murphy got us. 
 
@@ -46,6 +48,7 @@ will be created as objects in an array, and then deleted fine so its not static 
 its been beautiful realizations and understandings for me
 
 so enough said looking forward to learn more and spend time successfully coding. 
+
 
 
 
