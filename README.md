@@ -8,32 +8,26 @@ html css php roulette alpha
 
 well this i my first php project, this is from times before i learned object orientation. 
 
-it was back then the first language we learned , where we also learned a gui to it, the html in this case.
+it was back then the first language I learned after python. and the first one where I could use a Gui, the html/css
 
-before i already made a roulete game for console. 
+earlier i already made a roulette game for console only. 
 
 so this is a website where u can set bets as in roulette and then can let it run fast forward and see hundreds of the next random rolls. 
 
-as u will see there is one bet for all picked numbers.  it would need at every number the textfields, its really oldschool kinda just having a gui and did it. 
+as u will see there is one bet for all picked numbers.  it would need at every number the textfields, its really oldschool kinda the way how to type in and select. 
 
-(Sure would be beautiful to do it nicely with javascript. why not. )
+(Sure would be beautiful to do it nicely with javascript.  )
 
 then u see how ur credit is rising or decreasing. its interesting how the random times, when all chosen numbers gets rolled a lot in short time periods, happening right.
 every roll is documentated aswell as the history of the credit. its on the second page if u stop the autorefresh. 
 Tho the auto refresh not working right now idk what changed in the browsers, anyways still can roll one by one
-its kind of true if you have unlimited funds you can Most of the time win the money back. there is a point where it would be prolly imposible that the lucky numbers getting rolled so many times, tho it would be possible if you let it run unlimited time..  murphy got us. 
 
-so sometimes if u let it run, and lets say your bet was 400 euro bet on 5-10 numbers and on rows and maybe color aswell. 
-so u let run the package and its interesting when its going to be in plus again or ever again. 
-
-its now going towards quantum phyisics right, if we would have a real random engine.
+its kind of true if you have unlimited funds you can Most of the time win the money back. there is a point where it would be prolly imposible that the lucky numbers getting rolled so many times, tho it would be possible if you let it run unlimited time..  maybe. 
 
 so for example the 400 euro bet with 5000euro credits right , easier like 50 euro with 4 euro bets, NOT a lot space to maybe see wining numbers,
-most of the times u loose.. its facts, the more you play the more sure you will loose there is no way arround it i guess :)
+most of the times u loose.. its facts, the more you play the more sure you will loose there is no way arround it if u not bet higher.
 
-so this is a readme for the gamblers out there who forget to see logicly what they actualy doing and that no control of this is possible.
-
-only way you bet real higher and win super high.  But that again goes in the chances of luck section, wich as said, The More u play, The More u loose... 
+only way is maybe if you bet real higher and win super high compensating the losses. But that again goes in the chances of luck section, wich as said, The More u play, The More u loose... 
 
 anyways its beautiful to see and back then to learn that php is such a nice language for backend situations.
 
