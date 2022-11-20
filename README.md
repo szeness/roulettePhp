@@ -14,6 +14,10 @@ before i already made a roulete game for console.
 
 so this is a website where u can set bets as in rl roulette and then can let it run fast forward and see hundreds of the next random rolls. 
 
+as u will see there is one bet for all picked numbers.  it would need at every number the textfields, its really oldschool kinda just having a gui and did it. 
+
+Sure would be beautiful to do it nicely with javascript. why not. 
+
 then u see how ur credit is rising or decreasing. its interesting how the random times, when all chosen numbers gets rolled a lot in short time periods, happening right.
 its kind of true if you have unlimited funds you can Most of the time win the money back. there is a point where it would be prolly imposible that the lucky numbers get
 rolled so many times, tho it would be possible if you let it run unlimited time..  murphy got us. 
@@ -30,7 +34,7 @@ so this is a readme for the gamblers out there who forget to see logicly what th
 
 only way you bet real higher and win super high.  But that again goes in the chances of luck section, wich as said, The More u play, The More u loose... 
 
-anyways its beautiful to see and back then to learn that php is such a nice language for backend situations. ofcourse javascript is king i guess...
+anyways its beautiful to see and back then to learn that php is such a nice language for backend situations.
 
 javascript is in this code 2-3 rows, its for the automatic refresh of the page. since php needs a refresh to be ran again.
 
@@ -42,4 +46,6 @@ will be created as objects in an array, and then deleted fine so its not static 
 its been beautiful realizations and understandings for me
 
 so enough said looking forward to learn more and spend time successfully coding. 
+
+
 
