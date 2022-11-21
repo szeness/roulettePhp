@@ -35,7 +35,7 @@ javascript is in this code 2-3 rows, its for the automatic refresh of the page. 
 
 btw the "back then" I am talking about is end of 2021. so this was the first game with a graphical user interface I did.
 
-after that came the Black Jack project wich i did in Java (still at this time not really knowing about oop). so I learned the oop there for first, tho my 
+after that came the Black Jack project wich i did in Java (still at that time not really knowing about oop). so I learned the oop there for the first time, tho my 
 code already written in functional thinking, I used then some what i learned for creating objects, when the cards get picked, so just as many cards as picked 
 will be created as objects in an array, and then deleted fine so its not static fields they come when needed know how to place themselfs near the last card.
 
