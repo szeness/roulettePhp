@@ -1,6 +1,5 @@
 <?php
 
-
         $zahl = rand(0,36);
         $checkednr = 0;
     
@@ -8,17 +7,23 @@
         $schwarz = array(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
 
         $leftsec = array(1,4,7,10,13,16,19,22,25,28,31,34);
-        $midsec = array(2,5,8,11,14,17,20,23,26,29,32,35);
+        $midsec = array(0,2,5,8,11,14,17,20,23,26,29,32,35);
         $rightsec = array(3,6,9,12,15,18,21,24,27,30,33,36);
-        
-        $zahlcounter = ("zahlencounter.csv");
-        $zahlcounter = (file_exists('zahlencounter.csv') ? ($zahlcounter = fopen('zahlencounter.csv', 'a+')) : ($zahlcounter = fopen('zahlencounter.csv','a+')));
 
+        
         $visitcounter = ("hits_visits.txt");
         $visitcounter = (file_exists('hits_visits.txt') ? ($visitcounter = fopen('hits_visits.txt', 'a+')) : ($visitcounter = fopen('hits_visits.txt','a+')));
         $visitsnr = (file_get_contents("hits_visits.txt"));
         $visitsnr = (intval($visitsnr) + 1);
+
+
+        $zahlcounter = ("zahlencounter.csv");
+        $zahlcounter = (file_exists('zahlencounter.csv') ? ($zahlcounter = fopen('zahlencounter.csv', 'a+')) : ($zahlcounter = fopen('zahlencounter.csv','a+')));
         
+        $expZahl = explode("zahlencounter.csv", "\n");
+        $zindex = file_get_contents("zahlencounter.csv");
+            
+
         $cre = ("creditcounter.csv");
         $cre = (file_exists('creditcounter.csv') ? ($cre = fopen('creditcounter.csv', 'a+')) : ($cre = fopen('creditcounter.csv','a+')));
         while (($csv_array = fgetcsv($cre)) !== FALSE){
@@ -27,9 +32,12 @@
         $winsumhistory = (file_exists('winsum_history.csv') ? ($winsumhistory = fopen('winsum_history.csv', 'a+')) : ($winsumhistory = fopen('winsum_history.csv','a+'))); 
         $wincount = isset($_GET['netto']) ? $_GET['netto'] : 0;
         $wincount = $wincount + 0;
-    
+        $maxwincount = isset($_GET['maxnetto']) ? $_GET['maxnetto'] : $wincount;
+//var_dump($wincount);
+
         $wincount = $wincount + (isset($index) ? $index : 0);
-        
+        $windex = file_get_contents('winsum_history.csv');
+
         $wontotal = 0;
         $wonzahl = 0;
         $woneven = 0;
@@ -82,10 +90,43 @@
         $bets->betMid = isset($_GET['betmid']) && isset($_GET['checkmid']) ? intval($_GET['betmid']) : 0;
         $bets->betRight = isset($_GET['betright']) && isset($_GET['checkright']) ? intval($_GET['betright']) : 0;
         
-        for($forchecked=0;$forchecked<=36;$forchecked++) {
-            if(isset($_GET['' . $forchecked . ''])):{$checkednr++;
-            }else:{}endif;}
-
+        if(isset($_GET['0'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['1'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['2'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['3'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['4'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['5'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['6'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['7'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['8'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['9'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['10'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['11'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['12'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['13'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['14'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['15'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['16'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['17'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['18'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['19'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['20'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['21'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['22'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['23'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['24'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['25'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['26'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['27'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['28'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['29'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['30'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['31'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['32'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['33'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['34'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['35'])):{$checkednr++;}else:{}endif;
+        if(isset($_GET['36'])):{$checkednr++;}else:{}endif;
             
         $bettypop = $bets->betTypp > 0 ? $bets->betTypp : $bets->betTypp;
         $bettycolor = $bets->betFarbe > 0 ? $bets->betFarbe : $bets->betFarbe;
@@ -102,7 +143,25 @@
         $betsAll =    $bets->betZahl * $checkednr + $bets->betTypp + $bets->betHigh
                     + $bets->betFarbe + $bets->betRight + $bets->betMid + $bets->betLeft
                     + $bets->bet2536 + $bets->bet1324 + $bets->bet112 + $bets->betLow;
-       
+
+
+/*                     echo('<script type="text/javascript">
+                    window.onload=function(){
+                    var auto = setTimeout(function(){ autoRefresh(); }, 100);
+            
+                    function submitform(){
+                      alert("test");
+                      document.getElementById["roll"].submit();
+                    }
+            
+                    function autoRefresh(){
+                       clearTimeout(auto);
+                       auto = setTimeout(function(){ submitform(); autoRefresh(); }, 1000);
+                    }
+                }
+            </script>');
+ */
+
 ?>
     <!DOCTYPE html>
     <html>
@@ -111,19 +170,30 @@
             <title>LAc Roullettez</title>
             <link rel="stylesheet" href="./Roulstyles.css">        
     </head>
-    <body background="2casino-roulette-table-chips-casino-concepts-besthqwallpapers.com-2048x1536.jpg" 
-      onload="setTimeout(function() {
+      <!--   <body onload="setTimeout(function() { document.myform.submit() }, 5000)">
+    <form action=TripRecorder name="myform">
+       <textarea id="result1"  name="res1" value="str1" cols="20" rows="1" ></textarea> <br> <br/>
+      <textarea id="result2" name="res2" value="str2" cols="20" rows="1" ></textarea> -->  
+<body background="2casino-roulette-table-chips-casino-concepts-besthqwallpapers.com-2048x1536.jpg" >
+      <!-- onload="setTimeout(function() {
         document.rollz.submit() 
-        }, 50
-        )">
-                <p align="left">Salut, Welcome to </p>                                
-                <p align="left" id="redz"><<<<' LAc Roulettez '>>>      &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                                                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                                                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Tries: <?php echo($visitsnr); ?>
+        }, 200)" -->
+
+                <p align="left">Salut, Welcome to </p>              <?php echo('<td><form method="get">
+        <input class="button" type="submit" formaction="roulettez_del_bets.php"value="reset all" width="2px" style=" color: white; background-color:#110011; height: 20px; width: 70px"></form></td><td>
+        <form method="get">
+        <input type="submit" name="stop" formaction="roulettezlaxStop.php" value="stop" width="2px" style=" color: white; background-color:#110011; height: 20; width: 70px"</table></form>');?>
+        </table>                     
+                <p align="left" id="redz"><<<<' LAc Roulettez '>>>  Numbers: <?php echo($visitsnr); ?>
+
+                                                                        <?php echo($zindex);?>
                </p>
+               <?php echo 'Trys: ' . $visitsnr . '';?><br><br>
+               <?php echo($windex); ?><br>
+               
         <table background="casino-roulette-table-chips-casino-concepts-besthqwallpapers.com-2048x1536.jpg" border=""  align="center">
           <tr>
-            <td><br><br><br><br><br><br>
+            <td>    <br><br><br><br><br><br>
                 <form action="./roulettezlax.php" method="GET" name="rollz"> 
                     <p align="right" id="gray">                    
                         x3<input type="number" name="bet112" style="width: 3em" value="<?php echo($betty112); ?>">
@@ -180,8 +250,8 @@
         <input type="checkbox" id="35" name="35" value="35"class="largerCheckbox"<?php echo ((isset($_GET['35']) && $_GET['35'] === "35") ? "checked" : "")?>>35
         <input type="checkbox" id="36" name="36" value="36"class="largerCheckbox"<?php echo ((isset($_GET['36']) && $_GET['36'] === "36") ? "checked" : "")?>><font color="red">36</font><br>
     </div>
-        </td>
-            <td border="0"><br><br>
+            </td>
+            <td border="0">    <br><br> 
                 <p align="right" id="gray" border="0"><br>
                     <input type="checkbox" name="checklow" value="low"<?php echo ((isset($_GET['checklow']) && $_GET['checklow'] === "low") ? "checked" : "")?>>Low<br>
                     <input type="number" name="betlow" style="width: 3em" value="<?php echo($bettylow); ?>">x2</p>    <br><br><br><br><br> 
@@ -190,8 +260,10 @@
                     <input type="number" name="bethigh" style="width: 3em" value="<?php echo($bettyhigh); ?>">x2
                 </p>
             </td>
-            <td></td><td></td><td></td><td><br><br><br><br><br><br><br><br><br><br><br> 
-
+            <td></td>
+            <td></td>
+            <td></td>            
+            <td><br><br><br><br><br><br><br><br><br><br><br> 
                 <p align="center" id="gray">                    
                     <input type="radio" name="typp" value="even" <?php echo ((isset($_GET['typp']) && $_GET['typp'] === "even") ? "checked" : "")?>/><font color="black">even</font><br>          
                     <input type="radio" name="typp" value="odd"<?php echo ((isset($_GET['typp']) && $_GET['typp'] === "odd") ? "checked" : "")?>/>odd<br>                                    
@@ -202,7 +274,14 @@
                     <input type="radio" name="checkcolor" value="Black"<?php echo ((isset($_GET['checkcolor']) && $_GET['checkcolor'] === "Black") ? "checked" : "")?>><font color="black">Black</font><br> <br>                
                     <input type="number" name="betcolor" style="width: 3em" value="<?php echo($bettycolor);?>">x2<br>
             </td>
-            <td></td><td></td><td></td><td></td><td></td></tr><tr><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>            
+        <tr>
+            <td></td>
             <td>
                 <p align="left" id="gray">
                     <input type="number" name="betleft" style="width: 3em" value="<?php echo($bettyleft);?>">
@@ -212,147 +291,321 @@
                     <input type="number" name="betright" style="width: 3em" value="<?php echo($bettyright);?>">
                     <input type="checkbox" name="checkright" value="right"<?php echo ((isset($_GET['checkright']) && $_GET['checkright'] === "right") ? "checked" : "")?>>
             </td>
-        </tr><td></td>
+        </tr>
+            <td></td>
             <td align="left" id="gray">
                     &ensp; &ensp; &ensp;    Left &ensp;  &ensp;        Mid &ensp; &ensp;Right
             </td>
-        <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr>
-
+        <tr>
+        </tr><tr>
+        </tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr>
             <td align="right">
                     <p> <font size="15%"><font color="black"> <?php if (in_array($zahl, $schwarz)):{ echo($zahl);} endif;?> </font>
                     <p> <font size="15%"><font color="green"> <?php if ($zahl === 0):{ echo($zahl);} endif;?> </font>
                     <p id="red"><font size="15%"> <?php if (in_array($zahl, $rot)):{ echo($zahl);} endif; ?> </p>
             </td>
-            <td><p align="center" >            
-                <input class="button" type="submit" id="roll" name="roll" value="ROLL" width="6px" style=" color: white; background-color:#110011; height: 50px; width: 200px">    
+            <td>   
+                    <p align="center" >            
+                    <input class="button" type="submit" id="roll" name="roll" value="ROLL" width="6px" style=" color: white; background-color:#110011; height: 50px; width: 200px">    
             </td>    
 
-
-            <td align="left"> <font color="550066" face="roboto" size="3" face="verdana"> Total Bet:<br><div align="center"><font color="330055" face="comic" size="4">
-                                                                                                        <?php $betsAll = intval($betsAll); echo($betsAll /100); ?> €   
-            <td><td></td><td>
-            </td><td><p align="center"><font color="220044" face="verdana">&ensp;&ensp;&ensp;&ensp;win 
-                                                                
-                                                                &ensp;&ensp;&ensp;<br>summary: <br><?php $wincount = intval($wincount); echo($wincount /100);?>
-                                                                                <?php?>€</p>
+            <td align="left"> <font color="550066" face="roboto" size="3" face="verdana"> Total Bet:<br><div align="center"><font color="330055" face="comic" size="4"><?php echo($betsAll); ?> €   
+            <td><td>
+            </td><td>
+            </td><td><p><font color="220044" face="verdana">win <br>sum.: <br><?php echo(number_format($wincount, 0, "," , "."));?>
+                                                                                <?php
+                                                                              /*   if($wincount > $maxwincount):{
+                                                                                    echo($maxwincount);
+                                                                                }
+                                                                                endif; */
+                                                                                ?>Coins</p>
             </td>
-            
-        
-    </tr> <td>
-        <input class="button" type="submit"  value="reset all" formaction="roulettez_del_bets.php" width="2px" style=" color: white; background-color:#110011; height: 20px; width: 70px"> </td><td>
-        <input type="submit" name="stop" formaction="roulettezlaxStop.php" value="stop" width="2px" style=" color: white; background-color:#110011; height: 20; width: 70px">
-        </table>
+        </tr></form>
+     
 <?php
 
     echo('<table border="1"  align="center" class="inlineTable"></table>');               
         if (in_array($zahl, $rot)):{
             echo('<p align="center"><font color="red"> ' . $zahl . ' <font size="1">Red</font>');
             $farbe = TRUE;
-        }elseif (in_array($zahl, $schwarz)):{
+        }
+        elseif (in_array($zahl, $schwarz)):{
             echo('<p align="center"><font color="black">' . $zahl . ' </font><font color="black"> <font size="2">Black</font>');
             $farbe = FALSE;
-        }else:{
+        }
+        else:{
             echo('<p align="center"><font color="darkgreen">0 Green King</font>');
-        }endif;
+        }
+        endif;
     echo('<font color="CC7755" size="3" face="timesnewroman">');
         if ($zahl % 2 === 0 and $zahl != 0):{
                 echo(' Even'); 
                 $typp = TRUE;
                     //    echo(' ' . $woneven . '');
-            }elseif ($zahl % 2 != 0 and $zahl != 0):{
+            }
+            elseif ($zahl % 2 != 0 and $zahl != 0):{
                 echo(' Odd');
                 $typp = FALSE;
-            }else:{}endif;
+            }
+            else:
+            {}
+            endif;
+
         if (in_array($zahl, $leftsec) && $zahl != 0):{
             echo(' Left segment');
             $secleft = TRUE;
-        }elseif (in_array($zahl, $midsec)):{
-
+        }
+        elseif (in_array($zahl, $midsec)):{
             echo(' Mid segment');
             $secmid = TRUE;
-        }elseif (in_array($zahl, $rightsec) && $zahl != 0):{
+        }
+        elseif (in_array($zahl, $rightsec) && $zahl != 0):{
             echo(' Right segment');
             $secright = TRUE;
-        }else:{}endif;
+        }
+        else:
+        {}
+        endif;
 
         if ($zahl > 18 and $zahl != 0):{
             echo(' /High section');
             $sechigh = TRUE;
-        }elseif ($zahl <= 18 and $zahl != 0):{
+        }
+        elseif ($zahl <= 18 and $zahl != 0):{
             echo(' /Low section');
             $seclow = TRUE;
-        }else:{}endif;
+        }
+        else:
+        {}
+        endif;
 
         if ($zahl >= 1 && $zahl <= 12 and $zahl != 0):{
             echo(' /1-12');
             $sec112 = TRUE;
-        }elseif ($zahl > 12 && $zahl <= 25 and $zahl != 0):{
+        }
+        elseif ($zahl > 12 && $zahl <= 25 and $zahl != 0):{
             echo(' /13-24');
             $sec1324 = TRUE;
-        }elseif ($zahl > 25 && $zahl <= 36 and $zahl != 0):{
+        }
+        elseif ($zahl > 25 && $zahl <= 36 and $zahl != 0):{
             echo(' /25-36');
             $sec2536 = TRUE;
-        }else:{}endif;    
+        }
+        else:
+        {}
+        endif;
 
-    echo('<table class="inlineTablestyle"><tr></font>');
-    echo('<font color="white" size="3">');       
+        $ok1 = isset($_GET['1']) ? isset($_GET['1']) : NULL;
 
-        for($forzahl = 0; $forzahl <= 36; $forzahl++) {
-            if (isset($_GET[''. $forzahl . '']) && intval($zahl) === $forzahl && ($_GET[''. $forzahl . ''] === ''. $forzahl . '')): {
-                $wonzahl = $bets->betZahl * 36;
-                if ($zahl === 0): {echo('<p align="center"><font color="green">' . $zahl . '</font> came ' . $wonzahl . '</p>'); 
-                }elseif (in_array($zahl,$rot)): {echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>'); 
-                }elseif (in_array($zahl,$schwarz)): {echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');                                   
-                } endif;
-            }endif;}
-        
-    echo('<font size="2%" color="CCFFCC"><p align="center">');
+echo('<table class="inlineTablestyle"><tr></font>');
+echo('<font color="white" size="3">');
+
+        if (intval($zahl) === 1 && intval($zahl) === intval($ok1)): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['3']) && intval($zahl) === 3 && ($_GET['3'] === '3')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['0']) && intval($zahl) === 0 && ($_GET['0'] === '0')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="green">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['2']) && intval($zahl) === 2 && ($_GET['2'] === '2')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['4']) && intval($zahl) === 4 && ($_GET['4'] === '4')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['5']) && intval($zahl) === 5 && ($_GET['5'] === '5')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['7']) && intval($zahl) === 7 && ($_GET['7'] === '7')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['9']) && intval($zahl) === 9 && ($_GET['9'] === '9')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['6']) && intval($zahl) === 6 && ($_GET['6'] === '6')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['8']) && intval($zahl) === 8 && ($_GET['8'] === '8')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['10']) && intval($zahl) === 10 && ($_GET['10'] === '10')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['12']) && intval($zahl) === 12 && ($_GET['12'] === '12')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['11']) && intval($zahl) === 11 && ($_GET['11'] === '11')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['14']) && intval($zahl) === 14 && ($_GET['14'] === '14')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['13']) && intval($zahl) === 13 && ($_GET['13'] === '13')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['15']) && intval($zahl) === 15 && ($_GET['15'] === '15')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['17']) && intval($zahl) === 17 && ($_GET['17'] === '17')):{
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['16']) && intval($zahl) === 16 && ($_GET['16'] === '16')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['20']) && intval($zahl) === 20 && ($_GET['20'] === '20')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['18']) && intval($zahl) === 18 && ($_GET['18'] === '18')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['22']) && intval($zahl) === 22 && ($_GET['22'] === '22')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['24']) && intval($zahl) === 24 && ($_GET['24'] === '24')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['26']) && intval($zahl) === 26 && ($_GET['26'] === '26')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['19']) && intval($zahl) === 19 && ($_GET['19'] === '19')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['21']) && intval($zahl) === 21 && ($_GET['21'] === '21')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['23']) && intval($zahl) === 23 && ($_GET['23'] === '23')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['28']) && intval($zahl) === 28 && ($_GET['28'] === '28')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['29']) && intval($zahl) === 29 && ($_GET['29'] === '29')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['31']) && intval($zahl) === 31 && ($_GET['31'] === '31')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['25']) && intval($zahl) === 25 && ($_GET['25'] === '25')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['27']) && intval($zahl) === 27 && ($_GET['27'] === '27')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['30']) && intval($zahl) === 30 && ($_GET['30'] === '30')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['33']) && intval($zahl) === 33 && ($_GET['33'] === '33')):{
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['35']) && intval($zahl) === 35 && ($_GET['35'] === '35')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="black">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['34']) && intval($zahl) === 34 && ($_GET['34'] === '34')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        elseif (isset($_GET['36']) && intval($zahl) === 36 && ($_GET['36'] === '36')): {
+            $wonzahl = $bets->betZahl * 36;
+            echo('<p align="center"><font color="red">' . $zahl . '</font> came ' . $wonzahl . '€</p>');
+        }
+        endif;
+
+echo('<font size="2%" color="CCFFCC"><p align="center">');
 
         if (isset($_GET['typp']) && $typp === TRUE && $_GET['typp'] === 'even' && $bets->betTypp > 0 && $zahl != 0):{
                 $woneven = $bets->betTypp * 2;
-                echo('<p align="center">won even: ' . $woneven . '</p>');
-            }elseif (isset($_GET['typp']) && $typp === FALSE && ($_GET['typp']) === 'odd' && $zahl != 0):{
+                echo('<p align="center">won even: ' . $woneven . '€</p>');
+            }
+        elseif (isset($_GET['typp']) && $typp === FALSE && ($_GET['typp']) === 'odd' && $zahl != 0):{
                 $woneven = $bets->betTypp * 2;
-                echo('<p align="center">won odd: ' . $woneven . '</p>');
-            }endif;
+                echo('<p align="center">won odd: ' . $woneven . '€</p>');
+            }
+        endif;
 
         if (isset($_GET['checkcolor']) && $farbe === TRUE and ($_GET['checkcolor']) === "Red" && $bets->betFarbe > 0 && $zahl != 0):{
                 $wonred = $bets->betFarbe * 2;
-                echo('<p align="center">Red: ' . $wonred . '</p>');
-            }elseif (isset($_GET['checkcolor']) && $farbe === FALSE && (($_GET['checkcolor'])) === "Black" && $bets->betFarbe > 0 && $zahl != 0):{
+                echo('<p align="center">Red: ' . $wonred . '€</p>');
+            }
+        elseif (isset($_GET['checkcolor']) && $farbe === FALSE && (($_GET['checkcolor'])) === "Black" && $bets->betFarbe > 0 && $zahl != 0):{
                 $wonred = $bets->betFarbe * 2;
-                echo('<p align="center">Black: ' . $wonred . '</p>');
-            }else:{}endif;
+                echo('<p align="center">Black: ' . $wonred . '€</p>');
+            }
+        else:{}
+        endif;
 
         if ($seclow === TRUE && isset($_GET['checklow']) && $zahl != 0):{
                 $wonlow = $bets->betLow * 2;
-                echo('<p align="center">low section: ' . $wonlow . '</p>');
-            }elseif ($sechigh === TRUE && isset($_GET['checkhigh']) && $zahl != 0):{
+                echo('<p align="center">low section: ' . $wonlow . '€</p>');
+            }
+        elseif ($sechigh === TRUE && isset($_GET['checkhigh']) && $zahl != 0):{
                 $wonhigh = $bets->betHigh * 2;
-                echo('<p align="center">high section: ' . (number_format($wonhigh,0,",",".")) . '</p>');
-            }endif;        
+                echo('<p align="center">high section: ' . $wonhigh . '€</p>');
+            }
+        endif;        
         
         if ($sec112 === TRUE && isset($_GET['112']) && $zahl != 0):{
                 $won112 = $bets->bet112 * 3;
-                echo('<p align="center">1-12:  ' . $won112 . '');
-            }elseif ($sec1324 === TRUE && isset($_GET['1324'])):{
+                echo('<p align="center">1-12:  ' . $won112 . '€');
+            }
+        elseif ($sec1324 === TRUE && isset($_GET['1324'])):{
                 $won1324 = $bets->bet1324 * 3;
-                echo('<p align="center">13-24:  ' . $won1324 . '');
-            }elseif ($sec2536 === TRUE && isset($_GET['2536']) && $zahl != 0):{
+                echo('<p align="center">13-24:  ' . $won1324 . '€');
+            }
+        elseif ($sec2536 === TRUE && isset($_GET['2536']) && $zahl != 0):{
                 $won2536 = $bets->bet2536 * 3;
-                echo('<p align="center">25-36:  ' . $won2536 . '');
-            }endif;
+                echo('<p align="center">25-36:  ' . $won2536 . '€');
+            }    
+        endif;
      
         if ($secright === TRUE && isset($_GET['betright']) && $zahl != 0):{
                 $wonright = $bets->betRight * 3;
-                echo('<p align="center">Right row: ' . $wonright . '');
-            }elseif ($secleft === TRUE && isset($_GET['betleft']) && $zahl != 0):{
+                echo('<p align="center">Right row: ' . $wonright . '€');
+            }
+        elseif ($secleft === TRUE && isset($_GET['betleft']) && $zahl != 0):{
                 $wonleft = $bets->betLeft * 3;
-                echo('<p align="center">Left row: ' . $wonleft . '');
-            }elseif ($secmid === TRUE && isset($_GET['betmid'])):{
+                echo('<p align="center">Left row: ' . $wonleft . '€');
+            }
+        elseif ($secmid === TRUE && isset($_GET['betmid'])):{
                 $wonmid = $bets->betMid * 3;
-                echo('<p align="center">Mid row: ' . $wonmid . '');
-            }endif;
+                echo('<p align="center">Mid row: ' . $wonmid . '€');
+            }    
+        endif;
         
         $wontotal = $wonred + $woneven + $wonhigh + $wonlow + $won2536 + $won112 + $won1324 + $wonright + $wonleft + $wonmid + $wonzahl;
         $netto = ($wontotal - $betsAll);
@@ -360,25 +613,26 @@
         echo('<p align="center"><font size="3"> Won total: ' . $wontotal .  ' ');
         echo('</font><td></td><td></td><td></td>');  
         echo('<input type="hidden" name="netto" style="width: 0em" value="' . $wincount . '"></form>');
+        echo('<input type="hidden" name="maxnetto" style="width: 0em" value="' . $maxwincount . '"></form>');
+//var_dump($maxwincount);
+//var_dump($wincount);
 
         $netto = array($wontotal - $betsAll);
         $cre = ("creditcounter.csv");
         $cre = fopen("creditcounter.csv", "a+");
         fputcsv($cre, $netto, FILE_APPEND); 
 
+        //$winsumhistory = ("winsum_history.csv");
         $winsumhistory = ("winsum_history.csv");
         $winsumhistory = fopen("winsum_history.csv", "a+");
         $wincount = array($wincount);
         fputcsv($winsumhistory, $wincount, FILE_APPEND); 
 
-        $zahlcounter = ("zahlencounter.csv");
-        $zahlcounter = fopen("zahlencounter.csv","a+");
-        $zahl = array($zahl);
-        fputcsv($zahlcounter,$zahl,FILE_APPEND);
-
+        
         $visitcounter = fopen("hits_visits.txt", "w");
         file_put_contents("hits_visits.txt", $visitsnr);
-        
+
+      
 ?>
   
     </body>
